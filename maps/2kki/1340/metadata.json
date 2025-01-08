@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "22",
+            "y": "24",
+            "destination_map_id": "1334",
+            "destination_x": "40",
+            "destination_y": "53"
+        },
+        {
+            "x": "39",
+            "y": "19",
+            "destination_map_id": "1334",
+            "destination_x": "42",
+            "destination_y": "88"
+        },
+        {
+            "x": "9",
+            "y": "7",
+            "destination_map_id": "1338",
+            "destination_x": "24",
+            "destination_y": "30"
+        },
+        {
+            "x": "10",
+            "y": "7",
+            "destination_map_id": "1338",
+            "destination_x": "23",
+            "destination_y": "30"
+        },
+        {
+            "x": "9",
+            "y": "27",
+            "destination_map_id": "1338",
+            "destination_x": "32",
+            "destination_y": "111"
+        },
+        {
+            "x": "10",
+            "y": "27",
+            "destination_map_id": "1338",
+            "destination_x": "33",
+            "destination_y": "111"
+        },
+        {
+            "x": "9",
+            "y": "12",
+            "destination_map_id": "1336",
+            "destination_x": "137",
+            "destination_y": "58"
+        },
+        {
+            "x": "10",
+            "y": "12",
+            "destination_map_id": "1336",
+            "destination_x": "137",
+            "destination_y": "58"
+        },
+        {
+            "x": "44",
+            "y": "9",
+            "destination_map_id": "1334",
+            "destination_x": "41",
+            "destination_y": "72"
+        },
+        {
+            "x": "68",
+            "y": "6",
+            "destination_map_id": "1334",
+            "destination_x": "60",
+            "destination_y": "64"
+        },
+        {
+            "x": "51",
+            "y": "21",
+            "destination_map_id": "1334",
+            "destination_x": "13",
+            "destination_y": "42"
+        }
+    ],
+    "loop_type": "none"
+}

@@ -1,0 +1,89 @@
+{
+    "teleport_data": [
+        {
+            "x": "8",
+            "y": "88",
+            "destination_map_id": "0132",
+            "destination_x": "33",
+            "destination_y": "14"
+        },
+        {
+            "x": "8",
+            "y": "88",
+            "destination_map_id": "0133",
+            "destination_x": "43",
+            "destination_y": "15"
+        },
+        {
+            "x": "53",
+            "y": "52",
+            "destination_map_id": "0136",
+            "destination_x": "1",
+            "destination_y": "13"
+        },
+        {
+            "x": "37",
+            "y": "239",
+            "destination_map_id": "0135",
+            "destination_x": "34",
+            "destination_y": "70"
+        },
+        {
+            "x": "20",
+            "y": "140",
+            "destination_map_id": "0255",
+            "destination_x": "32",
+            "destination_y": "71"
+        },
+        {
+            "x": "9",
+            "y": "66",
+            "destination_map_id": "0111",
+            "destination_x": "0",
+            "destination_y": "12"
+        },
+        {
+            "x": "35",
+            "y": "243",
+            "destination_map_id": "0257",
+            "destination_x": "28",
+            "destination_y": "10"
+        },
+        {
+            "x": "20",
+            "y": "107",
+            "destination_map_id": "0256",
+            "destination_x": "2",
+            "destination_y": "1"
+        },
+        {
+            "x": "19",
+            "y": "107",
+            "destination_map_id": "0256",
+            "destination_x": "2",
+            "destination_y": "1"
+        },
+        {
+            "x": "31",
+            "y": "243",
+            "destination_map_id": "0136",
+            "destination_x": "1",
+            "destination_y": "12"
+        },
+        {
+            "x": "36",
+            "y": "240",
+            "destination_map_id": "0258",
+            "destination_x": "2",
+            "destination_y": "12"
+        },
+        {
+            "x": "7",
+            "y": "82",
+            "destination_map_id": "2011",
+            "destination_x": "5",
+            "destination_y": "5"
+        }
+    ],
+    "loop_type": "both"
+}

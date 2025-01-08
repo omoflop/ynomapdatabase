@@ -1,0 +1,306 @@
+{
+    "teleport_data": [
+        {
+            "x": "99",
+            "y": "7",
+            "destination_map_id": "2392",
+            "destination_x": "73",
+            "destination_y": "14"
+        },
+        {
+            "x": "74",
+            "y": "139",
+            "destination_map_id": "2393",
+            "destination_x": "12",
+            "destination_y": "15"
+        },
+        {
+            "x": "95",
+            "y": "99",
+            "destination_map_id": "2391",
+            "destination_x": "44",
+            "destination_y": "134"
+        },
+        {
+            "x": "44",
+            "y": "133",
+            "destination_map_id": "2391",
+            "destination_x": "95",
+            "destination_y": "100"
+        },
+        {
+            "x": "38",
+            "y": "139",
+            "destination_map_id": "2391",
+            "destination_x": "19",
+            "destination_y": "166"
+        },
+        {
+            "x": "47",
+            "y": "143",
+            "destination_map_id": "2391",
+            "destination_x": "60",
+            "destination_y": "153"
+        },
+        {
+            "x": "59",
+            "y": "143",
+            "destination_map_id": "2391",
+            "destination_x": "29",
+            "destination_y": "164"
+        },
+        {
+            "x": "60",
+            "y": "152",
+            "destination_map_id": "2391",
+            "destination_x": "47",
+            "destination_y": "142"
+        },
+        {
+            "x": "52",
+            "y": "154",
+            "destination_map_id": "2391",
+            "destination_x": "39",
+            "destination_y": "167"
+        },
+        {
+            "x": "58",
+            "y": "158",
+            "destination_map_id": "2391",
+            "destination_x": "19",
+            "destination_y": "150"
+        },
+        {
+            "x": "48",
+            "y": "163",
+            "destination_map_id": "2391",
+            "destination_x": "9",
+            "destination_y": "165"
+        },
+        {
+            "x": "35",
+            "y": "155",
+            "destination_map_id": "2391",
+            "destination_x": "82",
+            "destination_y": "142"
+        },
+        {
+            "x": "39",
+            "y": "166",
+            "destination_map_id": "2391",
+            "destination_x": "52",
+            "destination_y": "155"
+        },
+        {
+            "x": "52",
+            "y": "171",
+            "destination_map_id": "2391",
+            "destination_x": "30",
+            "destination_y": "169"
+        },
+        {
+            "x": "61",
+            "y": "167",
+            "destination_map_id": "2391",
+            "destination_x": "88",
+            "destination_y": "141"
+        },
+        {
+            "x": "68",
+            "y": "156",
+            "destination_map_id": "2391",
+            "destination_x": "18",
+            "destination_y": "159"
+        },
+        {
+            "x": "76",
+            "y": "147",
+            "destination_map_id": "2391",
+            "destination_x": "24",
+            "destination_y": "172"
+        },
+        {
+            "x": "79",
+            "y": "158",
+            "destination_map_id": "2391",
+            "destination_x": "84",
+            "destination_y": "143"
+        },
+        {
+            "x": "81",
+            "y": "142",
+            "destination_map_id": "2391",
+            "destination_x": "35",
+            "destination_y": "156"
+        },
+        {
+            "x": "84",
+            "y": "144",
+            "destination_map_id": "2391",
+            "destination_x": "79",
+            "destination_y": "159"
+        },
+        {
+            "x": "88",
+            "y": "140",
+            "destination_map_id": "2391",
+            "destination_x": "61",
+            "destination_y": "168"
+        },
+        {
+            "x": "94",
+            "y": "142",
+            "destination_map_id": "2391",
+            "destination_x": "116",
+            "destination_y": "161"
+        },
+        {
+            "x": "11",
+            "y": "149",
+            "destination_map_id": "2391",
+            "destination_x": "3",
+            "destination_y": "162"
+        },
+        {
+            "x": "19",
+            "y": "149",
+            "destination_map_id": "2391",
+            "destination_x": "58",
+            "destination_y": "159"
+        },
+        {
+            "x": "15",
+            "y": "151",
+            "destination_map_id": "2391",
+            "destination_x": "44",
+            "destination_y": "134"
+        },
+        {
+            "x": "11",
+            "y": "158",
+            "destination_map_id": "2391",
+            "destination_x": "0",
+            "destination_y": "160"
+        },
+        {
+            "x": "18",
+            "y": "158",
+            "destination_map_id": "2391",
+            "destination_x": "69",
+            "destination_y": "156"
+        },
+        {
+            "x": "20",
+            "y": "166",
+            "destination_map_id": "2391",
+            "destination_x": "38",
+            "destination_y": "140"
+        },
+        {
+            "x": "9",
+            "y": "166",
+            "destination_map_id": "2391",
+            "destination_x": "48",
+            "destination_y": "164"
+        },
+        {
+            "x": "29",
+            "y": "163",
+            "destination_map_id": "2391",
+            "destination_x": "59",
+            "destination_y": "144"
+        },
+        {
+            "x": "30",
+            "y": "168",
+            "destination_map_id": "2391",
+            "destination_x": "52",
+            "destination_y": "170"
+        },
+        {
+            "x": "24",
+            "y": "171",
+            "destination_map_id": "2391",
+            "destination_x": "76",
+            "destination_y": "148"
+        },
+        {
+            "x": "1",
+            "y": "166",
+            "destination_map_id": "2391",
+            "destination_x": "44",
+            "destination_y": "134"
+        },
+        {
+            "x": "3",
+            "y": "161",
+            "destination_map_id": "2391",
+            "destination_x": "11",
+            "destination_y": "150"
+        },
+        {
+            "x": "0",
+            "y": "159",
+            "destination_map_id": "2391",
+            "destination_x": "95",
+            "destination_y": "100"
+        },
+        {
+            "x": "116",
+            "y": "160",
+            "destination_map_id": "2391",
+            "destination_x": "94",
+            "destination_y": "143"
+        },
+        {
+            "x": "118",
+            "y": "158",
+            "destination_map_id": "2391",
+            "destination_x": "73",
+            "destination_y": "171"
+        },
+        {
+            "x": "73",
+            "y": "170",
+            "destination_map_id": "2396",
+            "destination_x": "8",
+            "destination_y": "44"
+        },
+        {
+            "x": "76",
+            "y": "170",
+            "destination_map_id": "2391",
+            "destination_x": "118",
+            "destination_y": "159"
+        },
+        {
+            "x": "103",
+            "y": "70",
+            "destination_map_id": "2394",
+            "destination_x": "29",
+            "destination_y": "19"
+        },
+        {
+            "x": "66",
+            "y": "117",
+            "destination_map_id": "2391",
+            "destination_x": "62",
+            "destination_y": "178"
+        },
+        {
+            "x": "62",
+            "y": "178",
+            "destination_map_id": "2391",
+            "destination_x": "66",
+            "destination_y": "117"
+        },
+        {
+            "x": "72",
+            "y": "46",
+            "destination_map_id": "2398",
+            "destination_x": "11",
+            "destination_y": "13"
+        }
+    ],
+    "loop_type": "both"
+}

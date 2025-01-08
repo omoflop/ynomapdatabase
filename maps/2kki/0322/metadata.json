@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "0",
+            "y": "12",
+            "destination_map_id": "0321",
+            "destination_x": "29",
+            "destination_y": "12"
+        },
+        {
+            "x": "0",
+            "y": "11",
+            "destination_map_id": "0321",
+            "destination_x": "29",
+            "destination_y": "12"
+        },
+        {
+            "x": "0",
+            "y": "13",
+            "destination_map_id": "0321",
+            "destination_x": "29",
+            "destination_y": "13"
+        },
+        {
+            "x": "0",
+            "y": "14",
+            "destination_map_id": "0321",
+            "destination_x": "29",
+            "destination_y": "14"
+        },
+        {
+            "x": "30",
+            "y": "12",
+            "destination_map_id": "0323",
+            "destination_x": "1",
+            "destination_y": "14"
+        },
+        {
+            "x": "30",
+            "y": "11",
+            "destination_map_id": "0323",
+            "destination_x": "1",
+            "destination_y": "14"
+        },
+        {
+            "x": "30",
+            "y": "13",
+            "destination_map_id": "0323",
+            "destination_x": "1",
+            "destination_y": "14"
+        },
+        {
+            "x": "30",
+            "y": "14",
+            "destination_map_id": "0323",
+            "destination_x": "1",
+            "destination_y": "14"
+        },
+        {
+            "x": "29",
+            "y": "9",
+            "destination_map_id": "0187",
+            "destination_x": "103",
+            "destination_y": "122"
+        },
+        {
+            "x": "30",
+            "y": "9",
+            "destination_map_id": "0187",
+            "destination_x": "103",
+            "destination_y": "122"
+        },
+        {
+            "x": "28",
+            "y": "9",
+            "destination_map_id": "0187",
+            "destination_x": "103",
+            "destination_y": "122"
+        }
+    ],
+    "loop_type": "none"
+}

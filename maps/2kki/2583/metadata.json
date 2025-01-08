@@ -1,0 +1,12 @@
+{
+    "teleport_data": [
+        {
+            "x": "47",
+            "y": "24",
+            "destination_map_id": "2461",
+            "destination_x": "3",
+            "destination_y": "28"
+        }
+    ],
+    "loop_type": "both"
+}

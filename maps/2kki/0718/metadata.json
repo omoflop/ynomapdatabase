@@ -1,0 +1,47 @@
+{
+    "teleport_data": [
+        {
+            "x": "23",
+            "y": "23",
+            "destination_map_id": "1398",
+            "destination_x": "5",
+            "destination_y": "4"
+        },
+        {
+            "x": "23",
+            "y": "38",
+            "destination_map_id": "0729",
+            "destination_x": "12",
+            "destination_y": "14"
+        },
+        {
+            "x": "23",
+            "y": "38",
+            "destination_map_id": "0729",
+            "destination_x": "11",
+            "destination_y": "13"
+        },
+        {
+            "x": "23",
+            "y": "38",
+            "destination_map_id": "0729",
+            "destination_x": "12",
+            "destination_y": "12"
+        },
+        {
+            "x": "23",
+            "y": "38",
+            "destination_map_id": "0729",
+            "destination_x": "13",
+            "destination_y": "13"
+        },
+        {
+            "x": "4",
+            "y": "44",
+            "destination_map_id": "0715",
+            "destination_x": "15",
+            "destination_y": "49"
+        }
+    ],
+    "loop_type": "both"
+}

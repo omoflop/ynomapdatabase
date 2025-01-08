@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "43",
+            "y": "69",
+            "destination_map_id": "1186",
+            "destination_x": "23",
+            "destination_y": "0"
+        },
+        {
+            "x": "61",
+            "y": "11",
+            "destination_map_id": "0806",
+            "destination_x": "23",
+            "destination_y": "56"
+        },
+        {
+            "x": "61",
+            "y": "9",
+            "destination_map_id": "1186",
+            "destination_x": "79",
+            "destination_y": "41"
+        },
+        {
+            "x": "79",
+            "y": "10",
+            "destination_map_id": "1186",
+            "destination_x": "0",
+            "destination_y": "26"
+        },
+        {
+            "x": "79",
+            "y": "10",
+            "destination_map_id": "1186",
+            "destination_x": "0",
+            "destination_y": "66"
+        },
+        {
+            "x": "0",
+            "y": "65",
+            "destination_map_id": "1186",
+            "destination_x": "79",
+            "destination_y": "11"
+        },
+        {
+            "x": "79",
+            "y": "40",
+            "destination_map_id": "1186",
+            "destination_x": "64",
+            "destination_y": "9"
+        },
+        {
+            "x": "20",
+            "y": "65",
+            "destination_map_id": "1186",
+            "destination_x": "0",
+            "destination_y": "26"
+        },
+        {
+            "x": "0",
+            "y": "25",
+            "destination_map_id": "1186",
+            "destination_x": "79",
+            "destination_y": "11"
+        },
+        {
+            "x": "0",
+            "y": "25",
+            "destination_map_id": "1186",
+            "destination_x": "19",
+            "destination_y": "66"
+        },
+        {
+            "x": "23",
+            "y": "0",
+            "destination_map_id": "1186",
+            "destination_x": "43",
+            "destination_y": "69"
+        }
+    ],
+    "loop_type": "none"
+}

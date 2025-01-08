@@ -1,0 +1,75 @@
+{
+    "teleport_data": [
+        {
+            "x": "25",
+            "y": "19",
+            "destination_map_id": "3065",
+            "destination_x": "74",
+            "destination_y": "73"
+        },
+        {
+            "x": "25",
+            "y": "19",
+            "destination_map_id": "3065",
+            "destination_x": "74",
+            "destination_y": "71"
+        },
+        {
+            "x": "25",
+            "y": "19",
+            "destination_map_id": "3065",
+            "destination_x": "73",
+            "destination_y": "72"
+        },
+        {
+            "x": "64",
+            "y": "32",
+            "destination_map_id": "3066",
+            "destination_x": "9",
+            "destination_y": "14"
+        },
+        {
+            "x": "74",
+            "y": "72",
+            "destination_map_id": "3065",
+            "destination_x": "25",
+            "destination_y": "20"
+        },
+        {
+            "x": "74",
+            "y": "72",
+            "destination_map_id": "3065",
+            "destination_x": "25",
+            "destination_y": "18"
+        },
+        {
+            "x": "74",
+            "y": "72",
+            "destination_map_id": "3065",
+            "destination_x": "24",
+            "destination_y": "19"
+        },
+        {
+            "x": "136",
+            "y": "47",
+            "destination_map_id": "3065",
+            "destination_x": "64",
+            "destination_y": "33"
+        },
+        {
+            "x": "136",
+            "y": "47",
+            "destination_map_id": "3065",
+            "destination_x": "64",
+            "destination_y": "31"
+        },
+        {
+            "x": "136",
+            "y": "47",
+            "destination_map_id": "3065",
+            "destination_x": "63",
+            "destination_y": "32"
+        }
+    ],
+    "loop_type": "both"
+}

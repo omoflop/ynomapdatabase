@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "50",
+            "y": "39",
+            "destination_map_id": "2268",
+            "destination_x": "427",
+            "destination_y": "7"
+        },
+        {
+            "x": "52",
+            "y": "88",
+            "destination_map_id": "2268",
+            "destination_x": "440",
+            "destination_y": "4"
+        },
+        {
+            "x": "164",
+            "y": "84",
+            "destination_map_id": "2299",
+            "destination_x": "14",
+            "destination_y": "5"
+        },
+        {
+            "x": "13",
+            "y": "7",
+            "destination_map_id": "2295",
+            "destination_x": "39",
+            "destination_y": "8"
+        },
+        {
+            "x": "10",
+            "y": "58",
+            "destination_map_id": "2268",
+            "destination_x": "486",
+            "destination_y": "10"
+        },
+        {
+            "x": "52",
+            "y": "87",
+            "destination_map_id": "2268",
+            "destination_x": "440",
+            "destination_y": "4"
+        },
+        {
+            "x": "153",
+            "y": "87",
+            "destination_map_id": "2268",
+            "destination_x": "473",
+            "destination_y": "7"
+        },
+        {
+            "x": "53",
+            "y": "37",
+            "destination_map_id": "2268",
+            "destination_x": "483",
+            "destination_y": "4"
+        },
+        {
+            "x": "10",
+            "y": "59",
+            "destination_map_id": "2268",
+            "destination_x": "486",
+            "destination_y": "10"
+        },
+        {
+            "x": "113",
+            "y": "57",
+            "destination_map_id": "2268",
+            "destination_x": "458",
+            "destination_y": "3"
+        },
+        {
+            "x": "2",
+            "y": "0",
+            "destination_map_id": "2292",
+            "destination_x": "245",
+            "destination_y": "86"
+        }
+    ],
+    "loop_type": "both"
+}

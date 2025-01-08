@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "60",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "13",
+            "destination_y": "193"
+        },
+        {
+            "x": "49",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "22",
+            "destination_y": "209"
+        },
+        {
+            "x": "51",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "47",
+            "destination_y": "209"
+        },
+        {
+            "x": "61",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "14",
+            "destination_y": "193"
+        },
+        {
+            "x": "63",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "16",
+            "destination_y": "193"
+        },
+        {
+            "x": "64",
+            "y": "15",
+            "destination_map_id": "0062",
+            "destination_x": "17",
+            "destination_y": "193"
+        },
+        {
+            "x": "105",
+            "y": "74",
+            "destination_map_id": "0062",
+            "destination_x": "63",
+            "destination_y": "211"
+        },
+        {
+            "x": "64",
+            "y": "143",
+            "destination_map_id": "0483",
+            "destination_x": "106",
+            "destination_y": "78"
+        },
+        {
+            "x": "64",
+            "y": "142",
+            "destination_map_id": "0483",
+            "destination_x": "106",
+            "destination_y": "75"
+        },
+        {
+            "x": "106",
+            "y": "77",
+            "destination_map_id": "0483",
+            "destination_x": "64",
+            "destination_y": "144"
+        },
+        {
+            "x": "106",
+            "y": "76",
+            "destination_map_id": "0483",
+            "destination_x": "64",
+            "destination_y": "141"
+        }
+    ],
+    "loop_type": "vertical"
+}

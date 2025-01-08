@@ -1,0 +1,82 @@
+{
+    "teleport_data": [
+        {
+            "x": "3",
+            "y": "331",
+            "destination_map_id": "3013",
+            "destination_x": "5",
+            "destination_y": "0"
+        },
+        {
+            "x": "4",
+            "y": "331",
+            "destination_map_id": "3013",
+            "destination_x": "5",
+            "destination_y": "0"
+        },
+        {
+            "x": "62",
+            "y": "18",
+            "destination_map_id": "2739",
+            "destination_x": "4",
+            "destination_y": "107"
+        },
+        {
+            "x": "4",
+            "y": "106",
+            "destination_map_id": "2739",
+            "destination_x": "62",
+            "destination_y": "19"
+        },
+        {
+            "x": "50",
+            "y": "39",
+            "destination_map_id": "2739",
+            "destination_x": "23",
+            "destination_y": "129"
+        },
+        {
+            "x": "228",
+            "y": "286",
+            "destination_map_id": "2739",
+            "destination_x": "145",
+            "destination_y": "237"
+        },
+        {
+            "x": "9",
+            "y": "2",
+            "destination_map_id": "2740",
+            "destination_x": "8",
+            "destination_y": "499"
+        },
+        {
+            "x": "10",
+            "y": "2",
+            "destination_map_id": "2740",
+            "destination_x": "8",
+            "destination_y": "499"
+        },
+        {
+            "x": "94",
+            "y": "223",
+            "destination_map_id": "3014",
+            "destination_x": "94",
+            "destination_y": "226"
+        },
+        {
+            "x": "112",
+            "y": "321",
+            "destination_map_id": "3014",
+            "destination_x": "74",
+            "destination_y": "322"
+        },
+        {
+            "x": "1",
+            "y": "1",
+            "destination_map_id": "3014",
+            "destination_x": "23",
+            "destination_y": "321"
+        }
+    ],
+    "loop_type": "none"
+}

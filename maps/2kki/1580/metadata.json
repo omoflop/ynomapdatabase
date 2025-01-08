@@ -1,0 +1,159 @@
+{
+    "teleport_data": [
+        {
+            "x": "19",
+            "y": "86",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "85"
+        },
+        {
+            "x": "0",
+            "y": "101",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "101"
+        },
+        {
+            "x": "19",
+            "y": "101",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "101"
+        },
+        {
+            "x": "0",
+            "y": "84",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "85"
+        },
+        {
+            "x": "0",
+            "y": "65",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "66"
+        },
+        {
+            "x": "0",
+            "y": "46",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "47"
+        },
+        {
+            "x": "19",
+            "y": "67",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "66"
+        },
+        {
+            "x": "0",
+            "y": "27",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "28"
+        },
+        {
+            "x": "0",
+            "y": "8",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "9"
+        },
+        {
+            "x": "19",
+            "y": "48",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "47"
+        },
+        {
+            "x": "19",
+            "y": "29",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "28"
+        },
+        {
+            "x": "19",
+            "y": "10",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "9"
+        },
+        {
+            "x": "19",
+            "y": "4",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "4"
+        },
+        {
+            "x": "0",
+            "y": "3",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "3"
+        },
+        {
+            "x": "0",
+            "y": "102",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "102"
+        },
+        {
+            "x": "19",
+            "y": "102",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "102"
+        },
+        {
+            "x": "0",
+            "y": "4",
+            "destination_map_id": "1580",
+            "destination_x": "19",
+            "destination_y": "4"
+        },
+        {
+            "x": "16",
+            "y": "100",
+            "destination_map_id": "1578",
+            "destination_x": "12",
+            "destination_y": "6"
+        },
+        {
+            "x": "17",
+            "y": "100",
+            "destination_map_id": "1578",
+            "destination_x": "13",
+            "destination_y": "6"
+        },
+        {
+            "x": "10",
+            "y": "1",
+            "destination_map_id": "1578",
+            "destination_x": "161",
+            "destination_y": "258"
+        },
+        {
+            "x": "9",
+            "y": "1",
+            "destination_map_id": "1578",
+            "destination_x": "160",
+            "destination_y": "258"
+        },
+        {
+            "x": "19",
+            "y": "3",
+            "destination_map_id": "1580",
+            "destination_x": "0",
+            "destination_y": "3"
+        }
+    ],
+    "loop_type": "none"
+}
