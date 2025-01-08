@@ -14,15 +14,16 @@ const updatesPerSecond = 60
 const minimapToggleButton = document.createElement("button");
 minimapToggleButton.classList.add("iconButton");
 minimapToggleButton.innerHTML = minimapButtonHTML;
-minimapToggleButton.style.display = 'none'
+minimapToggleButton.style.display = "none";
 
 minimapToggleButton.onclick = function() {
   mapForceHidden = !mapForceHidden;
 
   if (mapForceHidden) {
-      document.getElementById("locationLabel").textContent = `Location:`;
+    locationInfo.style.display = "none";
+  } else {
+    locationInfo.style.display = "";
   }
-
 }
 
 document.getElementById("rightControls").insertBefore(minimapToggleButton, document.getElementById("controls-fullscreen"));
@@ -31,12 +32,23 @@ const mapCanvas = document.createElement("canvas")
 mapCanvas.width = 512;
 mapCanvas.height = 512;
 
-mapCanvas.style.marginBottom = '10px';
 mapCanvas.style.userSelect = 'none';
 mapCanvas.style.display = 'none'
+mapCanvas.style.marginBottom = "2px";
 
 // Insert minimap above chat
-document.getElementById("chatbox").insertBefore(mapCanvas, document.getElementById("chatboxContent"))
+document.getElementById("chatbox").insertBefore(mapCanvas, document.getElementById("chatboxContent"));
+
+const locationInfo = document.createElement("span");
+locationInfo.classList.add("infoText");
+locationInfo.classList.add("nofilter");
+
+locationInfo.style.marginBottom = "8px";
+locationInfo.style.display = "none";
+locationInfo.style.textShadow = "2px 4px 4px black";
+
+// Insert location above chat (after minimap)
+document.getElementById("chatbox").insertBefore(locationInfo, document.getElementById("chatboxContent"));
 
 var mapMouseDown = false;
 var mouseOffsetX = 0;
@@ -50,6 +62,9 @@ var canvasMouseY = 0;
 
 const ctx = mapCanvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
+const lineHeight = ctx.measureText('M').width * 1.5; // Approximate line height
+
+
 var previousMap = null
 
 var mapImage = undefined;
@@ -65,19 +80,7 @@ var py = 0
 var lockedOnPlayer = true;
 var mapForceHidden = true;
 
-var pingX = undefined;
-var pingY = undefined;
-
-const pings = [];
-
-function addPing(mapId, x, y, expireAt) {
-  pings.add({
-    x: x,
-    y: y,
-    mapId: mapId,
-    expireAt: expireAt
-  })
-}
+var pings = new Map();
 
 mapCanvas.addEventListener("wheel", function(event) {
   var isZoomingIn = event.deltaY < 0;
@@ -108,8 +111,8 @@ mapCanvas.addEventListener("mousedown", function(event) {
     var mouseY = event.offsetY * mapCanvas.height / rect.height;
     var worldMouseX = (mouseX - imagePanX) / zoom;
     var worldMouseY = (mouseY - imagePanY) / zoom;
-    pingX = worldMouseX;
-    pingY = worldMouseY;
+
+    addPing(getMapId(), worldMouseX, worldMouseY, Date.now() + 10000, "omoflop");
   }
 });
 
@@ -135,31 +138,23 @@ document.addEventListener("mousemove", function(event) {
   canvasMouseY = (mouseY - imagePanY) / zoom;
 });
 
-
 function update() {
   try {
     let mapId = getMapId()
     if (mapId != null) {
       let temp = getPlayerPos()
       updateMap(mapId, temp[0], temp[1]);
-      if (!mapForceHidden) {
-        document.getElementById("locationLabel").textContent = `Location: (${mapId}, ${temp[0]}, ${temp[1]})`;
-      }
     }
   } catch (e) {
     console.log("Not in game yet", e)
-  } finally {
-
   }
   setTimeout(update, 1000 / updatesPerSecond)
 }
 
 function centerOnPlayer() {
-    // Calculate the center of the viewport
     const centerX = mapCanvas.width / 2;
     const centerY = mapCanvas.height / 2;
 
-    // Update pan values to center on player position
     imagePanX = centerX - (px + 8) * zoom;
     imagePanY = centerY - (py + 8) * zoom;
 }
@@ -173,7 +168,15 @@ function updateMap(mapId, playerX, playerY) {
   }
   previousMap = mapId;
 
-  mapCanvas.style.display = mapForceHidden || !mapImageReady ? 'none' : '';
+  mapCanvas.style.display = mapForceHidden ? 'none' : '';
+
+  if (mapForceHidden) {
+    px = playerX*16;
+    py = playerY*16;
+    return;
+  }
+
+  locationInfo.textContent = `x: ${playerX}, y: ${playerY}, map: ${mapId}`;
 
   // Update player position if they're too far
   if (dist(playerX*16, px, playerY*16, py) > 16 * 4) {
@@ -204,11 +207,6 @@ function updateMap(mapId, playerX, playerY) {
     let yy = 0;
     if (mapLoopType == "both" || mapLoopType == "horizontal") xx = 1;
     if (mapLoopType == "both" || mapLoopType == "vertical") yy = 1;
-
-    let pingExists = pingX != undefined && pingY != undefined;
-    let closestPingX = pingX
-    let closestPingY = pingY
-    let closestDist = 99999;
     for (let x = -xx; x <= xx; x++) {
       for (let y = -yy; y <= yy; y++) {
         ctx.drawImage(
@@ -219,23 +217,6 @@ function updateMap(mapId, playerX, playerY) {
           mapImage.height
         );
 
-        let loopedPingX = pingX + mapImage.width * x;
-        let loopedPingY = pingY + mapImage.height * y;
-
-        ctx.fillStyle = "yellow";
-        ctx.beginPath();
-        ctx.arc(loopedPingX, loopedPingY, 8, 0, Math.PI * 2);
-        ctx.fill();
-
-        if (pingExists) {
-          let pingDist = dist(px, loopedPingX, py, loopedPingY);
-          if (pingDist < closestDist) {
-            closestPingX = loopedPingX;
-            closestPingY = loopedPingY;
-            closestDist = pingDist;
-          }
-        }
-
 
         mapTeleports.forEach(teleportData => {
             ctx.fillStyle = "green";
@@ -245,45 +226,107 @@ function updateMap(mapId, playerX, playerY) {
 
             let tx = teleportData.x*16 + 8 + mapImage.width * x;
             let ty = teleportData.y*16 + 4 + mapImage.height * y;
-            let textSize = 24/zoom;
+            let textSize = 18/zoom;
 
             // Text settings
             ctx.font = `bold ${Math.round(textSize)}px Arial`;
             ctx.textAlign = 'center';
             ctx.lineWidth = 1;
 
+            const maxDistance = 200; // Maximum distance for the effect (in pixels)
+            const minScale = 0.5;    // Minimum scale for distant text
+            const minAlpha = 0.3;    // Minimum opacity for distant text
+
             let warpText = teleportData.destination_name ?? teleportData.destination_map_id;
+            const lines = wrapText(ctx, warpText);
 
+           lines.forEach((line, index) => {
+              const y = ty + (index * lineHeight / zoom);
 
-            // Draw the outline
-            ctx.strokeStyle = 'black';
-            ctx.strokeText(warpText, tx, ty);
+              // Calculate distance from mouse to this line's position
+              const dx = tx - canvasMouseX;
+              const dy = y - canvasMouseY;
+              const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // Draw the fill
-            ctx.fillStyle = 'white';
-            ctx.fillText(warpText, tx, ty);
+              // Calculate scale and alpha based on distance
+              const distanceRatio = Math.min(distance / maxDistance, 1);
+              const scale = 1 - (distanceRatio * (1 - minScale));
+              const alpha = 1 - (distanceRatio * (1 - minAlpha));
+
+              // Save the current context state
+              ctx.save();
+
+              // Apply transformations
+              ctx.translate(tx, y);
+              ctx.scale(scale, scale);
+              ctx.translate(-tx, -y);
+
+              // Draw the outline with adjusted alpha
+              ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
+              ctx.strokeText(line, tx, y);
+
+              // Draw the fill with adjusted alpha
+              ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+              ctx.fillText(line, tx, y);
+
+              // Restore the context state
+              ctx.restore();
+          });
         });
       }
     }
 
-    if (pingExists) {
-        ctx.strokeStyle = "white";
-        ctx.beginPath();
-        ctx.moveTo(closestPingX, closestPingY);
-        ctx.lineTo(px + 8, py + 8);
-        ctx.stroke();
+    // Draw & remove old pings
+    const now = Date.now();
+    pings.forEach((ping, key) => ping.mapId === getMapId() && (ping.exp <= now ? pings.delete(key) : drawPing(ping)));
 
-        ctx.fillStyle = "yellow";
-        ctx.beginPath();
-        ctx.arc(closestPingX, closestPingY, 8, 0, Math.PI * 2);  // +8 to center the circle
-        ctx.fill();
-    }
-
+    // Draw the player
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(px + 8, py + 8, 8, 0, Math.PI * 2);  // +8 to center the circle
     ctx.fill();
   }
+}
+
+function drawPing(ping) {
+  let pingX = ping.x;
+  let pingY = ping.y;
+  let closestX = pingX;
+  let closestY = pingY;
+
+  let xx = 0;
+  let yy = 0;
+  if (mapLoopType == "both" || mapLoopType == "horizontal") xx = 1;
+  if (mapLoopType == "both" || mapLoopType == "vertical") yy = 1;
+
+  // Draw the ping in the nearest loop
+  let closestDist = 99999;
+  for (let x = -xx; x <= xx; x++) {
+    for (let y = -yy; y <= yy; y++) {
+      let loopedPingX = pingX + mapImage.width * x;
+      let loopedPingY = pingY + mapImage.height * y;
+      let pingDist = dist(px, loopedPingX, py, loopedPingY);
+      if (pingDist < closestDist) {
+        closestX = loopedPingX;
+        closestY = loopedPingY;
+        closestDist = pingDist;
+      }
+    }
+  }
+
+  // Draw the line from the ping to the player
+  ctx.strokeStyle = "white";
+  ctx.beginPath();
+  ctx.moveTo(closestX, closestY);
+  ctx.lineTo(px + 8, py + 8);
+  ctx.stroke();
+
+
+  // Draw the actual ping dot
+  ctx.fillStyle = "yellow";
+  ctx.beginPath();
+  ctx.arc(closestX, closestY, 4, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 function loadMapImage(mapId) {
@@ -316,9 +359,13 @@ function loadMapImage(mapId) {
       mapLoopType = data.loop_type ?? "both"
       mapTeleports = data.teleport_data ?? []
 
-      // Attempt to use yno's api to get the location name of each teleport
       for (let i = 0; i < mapTeleports.length; i++) {
         let curTp = mapTeleports[i];
+        if (curTp.destination_name) {
+          mapTeleports[i].destination_name = curTp.destination_name;
+          continue;
+        }
+        // If there's no name, attempt to use yno's api to get it
         let temp = getLocalizedMapLocationsHtml(gameId, curTp.destination_map_id, curTp.destination_map_id, curTp.destination_x, curTp.destination_y, '<br>')
         mapTeleports[i].destination_name = temp.substring(temp.indexOf(">")+1, temp.lastIndexOf("<")).replace("Unknown Location", "?");
       }
@@ -327,6 +374,33 @@ function loadMapImage(mapId) {
       console.error('Failed to fetch metadata for map ', mapId);
       mapLoopType = "both"
     });
+}
+
+function wrapText(ctx, text, maxCharsPerLine = 16) {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+
+    words.forEach(word => {
+        const testLine = currentLine + (currentLine ? ' ' : '') + word;
+
+        if (testLine.length > maxCharsPerLine && currentLine !== '') {
+            lines.push(currentLine);
+            currentLine = word;
+        } else {
+            currentLine = testLine;
+        }
+    });
+
+    if (currentLine) {
+        lines.push(currentLine);
+    }
+
+    return lines;
+}
+
+function addPing(mapId, x, y, expireAt, fromUser) {
+  pings.set(pings.size, { mapId: mapId, x: x, y: y, exp: expireAt, username: fromUser });
 }
 
 function clamp(a, min, max) {
