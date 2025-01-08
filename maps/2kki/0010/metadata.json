@@ -5,196 +5,184 @@
             "y": "3",
             "destination_map_id": "0020",
             "destination_x": "25",
-            "destination_y": "13"
+            "destination_y": "13",
+            "destination_name": "Library"
         },
         {
             "x": "15",
             "y": "3",
             "destination_map_id": "0021",
             "destination_x": "68",
-            "destination_y": "24"
+            "destination_y": "24",
+            "destination_name": "Graveyard World"
         },
         {
             "x": "21",
             "y": "3",
             "destination_map_id": "0031",
             "destination_x": "24",
-            "destination_y": "12"
+            "destination_y": "12",
+            "destination_name": "Geometry World"
         },
         {
             "x": "9",
             "y": "9",
             "destination_map_id": "0051",
             "destination_x": "12",
-            "destination_y": "13"
+            "destination_y": "13",
+            "destination_name": "Marijuana Goddess World"
         },
         {
             "x": "3",
             "y": "3",
             "destination_map_id": "0004",
             "destination_x": "14",
-            "destination_y": "7"
+            "destination_y": "7",
+            "destination_name": "Urotsuki's Dream Room"
         },
         {
             "x": "15",
             "y": "9",
             "destination_map_id": "0061",
             "destination_x": "34",
-            "destination_y": "25"
+            "destination_y": "25",
+            "destination_name": "Purple World"
         },
         {
             "x": "21",
             "y": "9",
             "destination_map_id": "0071",
             "destination_x": "48",
-            "destination_y": "37"
+            "destination_y": "37",
+            "destination_name": "Forest World"
         },
         {
             "x": "3",
             "y": "9",
             "destination_map_id": "0081",
             "destination_x": "40",
-            "destination_y": "6"
+            "destination_y": "6",
+            "destination_name": "Garden World"
         },
         {
             "x": "15",
             "y": "21",
             "destination_map_id": "0171",
             "destination_x": "14",
-            "destination_y": "7"
+            "destination_y": "7",
+            "destination_name": "Urotsuki's Dream Apartments"
         },
         {
             "x": "21",
             "y": "27",
             "destination_map_id": "0091",
             "destination_x": "18",
-            "destination_y": "13"
+            "destination_y": "13",
+            "destination_name": "Heart World"
         },
         {
             "x": "3",
             "y": "27",
             "destination_map_id": "0014",
             "destination_x": "16",
-            "destination_y": "5"
+            "destination_y": "5",
+            "destination_name": "Red Streetlight World"
         },
         {
             "x": "9",
             "y": "27",
             "destination_map_id": "0289",
             "destination_x": "72",
-            "destination_y": "13"
+            "destination_y": "13",
+            "destination_name": "Mushroom World"
         },
         {
             "x": "3",
             "y": "21",
             "destination_map_id": "0822",
             "destination_x": "136",
-            "destination_y": "64"
+            "destination_y": "64",
+            "destination_name": "Cipher Keyboard"
         },
         {
             "x": "3",
             "y": "15",
             "destination_map_id": "0887",
             "destination_x": "31",
-            "destination_y": "35"
+            "destination_y": "35",
+            "destination_name": "Pudding World"
         },
         {
             "x": "9",
             "y": "15",
             "destination_map_id": "1313",
             "destination_x": "57",
-            "destination_y": "32"
-        },
-        {
-            "x": "9",
-            "y": "15",
-            "destination_map_id": "1313",
-            "destination_x": "57",
-            "destination_y": "30"
-        },
-        {
-            "x": "9",
-            "y": "15",
-            "destination_map_id": "1313",
-            "destination_x": "56",
-            "destination_y": "31"
-        },
-        {
-            "x": "9",
-            "y": "15",
-            "destination_map_id": "1313",
-            "destination_x": "58",
-            "destination_y": "31"
+            "destination_y": "32",
+            "destination_name": "Portrait Purgatory"
         },
         {
             "x": "15",
             "y": "15",
             "destination_map_id": "1416",
             "destination_x": "10",
-            "destination_y": "10"
+            "destination_y": "10",
+            "destination_name": "Rock World"
         },
         {
             "x": "21",
             "y": "15",
             "destination_map_id": "1971",
             "destination_x": "24",
-            "destination_y": "36"
+            "destination_y": "36",
+            "destination_name": "Ornamental Plains"
         },
         {
             "x": "9",
             "y": "45",
             "destination_map_id": "2338",
             "destination_x": "30",
-            "destination_y": "43"
+            "destination_y": "43",
+            "destination_name": "Abstract Corrosions"
         },
         {
             "x": "15",
             "y": "45",
             "destination_map_id": "3470",
             "destination_x": "12",
-            "destination_y": "7"
+            "destination_y": "7",
+            "destination_name": "Usugurai Residence"
         },
         {
             "x": "21",
             "y": "21",
             "destination_map_id": "1650",
             "destination_x": "90",
-            "destination_y": "10"
+            "destination_y": "10",
+            "destination_name": "Deep Red Wilds"
         },
         {
             "x": "3",
             "y": "34",
             "destination_map_id": "2202",
             "destination_x": "36",
-            "destination_y": "20"
-        },
-        {
-            "x": "3",
-            "y": "33",
-            "destination_map_id": "2202",
-            "destination_x": "36",
-            "destination_y": "20"
-        },
-        {
-            "x": "9",
-            "y": "39",
-            "destination_map_id": "0900",
-            "destination_x": "0",
-            "destination_y": "0"
+            "destination_y": "20",
+            "destination_name": "Lamp Puddle World"
         },
         {
             "x": "9",
             "y": "39",
             "destination_map_id": "2763",
             "destination_x": "89",
-            "destination_y": "9"
+            "destination_y": "9",
+            "destination_name": "Lemonade Edifice"
         },
         {
             "x": "21",
             "y": "39",
             "destination_map_id": "3241",
             "destination_x": "18",
-            "destination_y": "20"
+            "destination_y": "20",
+            "destination_name": "Night World"
         }
     ],
     "loop_type": "both"
