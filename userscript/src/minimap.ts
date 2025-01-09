@@ -87,7 +87,7 @@ const centerOnPlayer = () => {
 };
 
 export const update = () => {
-    let mapId = Game.getMapId();
+    let mapId = Game.getMapId()!;
     if (mapId && mapId != previousMapId) {
         if (Settings.values.debug) {
             console.log(`New map loaded: ${mapId} (prev ${previousMapId})`);
