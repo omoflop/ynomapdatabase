@@ -207,15 +207,23 @@ export const draw = () => {
                     const warpX = warp.x * 16 + 8 + loopX;
                     const warpY = warp.y * 16 + 8 + loopY;
 
+                    const warpDestX = warp.destinationX * 16 + 8 + loopX;
+                    const warpDestY = warp.destinationY * 16 + 8 + loopY;
+
                     ctx.fillStyle = warp.color;
                     ctx.beginPath();
                     ctx.arc(warpX, warpY, 8, 0, Math.PI * 2);
                     ctx.fill();
 
-                    ctx.strokeStyle = "white";
+                    ctx.fillStyle = warp.color;
+                    ctx.beginPath();
+                    ctx.arc(warpDestX, warpDestY, 8, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.strokeStyle = warp.color;
                     ctx.beginPath();
                     ctx.moveTo(warpX, warpY);
-                    ctx.lineTo(warp.destinationX * 16 + 8 + loopX, warp.destinationY * 16 + 8 + loopY);
+                    ctx.lineTo(warpDestX, warpDestY);
                     ctx.stroke();
                 });
 
@@ -275,6 +283,8 @@ const onMapChanged = (mapId: string) => {
     exitTeleports.length = 0;
     mapTeleports.length = 0;
 
+    // Used to get the name of a map
+    const [playerX, playerY] = Game.getPlayerCoords();
     const mapMetaUrl = `${Settings.values.assetServerAddress}/${gameId}/${mapId}/metadata.json?idk-what-im-doing`;
     fetch(mapMetaUrl)
         .then(response => {
@@ -285,12 +295,17 @@ const onMapChanged = (mapId: string) => {
             loopType = (data.loop_type ?? MapLoopType.None) as MapLoopType;
             const teleportData = (data.teleport_data ?? []) as Array<ProtoTeleport>;
             const colorMap = new Map<string, string>();
+            const processedPairs = new Set<string>();
+            const MAX_CONNECTED_DISTANCE = 2;
 
             const mapTeleportData = teleportData.filter(
                 teleport => teleport.destination_map_id == mapId
             );
 
             mapTeleportData.forEach((teleport, index) => {
+                const teleportKey = `${teleport.x},${teleport.y}`;
+                if (processedPairs.has(teleportKey)) return;
+                
                 const locationKey = [
                     teleport.x,
                     teleport.y,
@@ -311,27 +326,34 @@ const onMapChanged = (mapId: string) => {
                 } else if (colorMap.has(reverseKey)) {
                     color = colorMap.get(reverseKey)!;
                 } else {
-                    const partner = mapTeleportData.find((otherTeleport, otherIndex) => index !== otherIndex && areBidirectional(teleport, otherTeleport, mapId));
                     color = Util.generateRandomColor();
                     colorMap.set(locationKey, color);
-                    if (partner) {
-                        const partnerKey = [
-                            partner.x,
-                            partner.y,
-                            partner.destination_x,
-                            partner.destination_y,
-                        ].join(',');
-                        colorMap.set(partnerKey, color);
-                    }
                 }
 
-                mapTeleports.push({
-                    x: teleport.x,
-                    y: teleport.y,
-                    destinationX: teleport.destination_x,
-                    destinationY: teleport.destination_y,
-                    color: color
-                });
+                const partner = mapTeleportData.find((otherTeleport, otherIndex) => index !== otherIndex && areBidirectional(teleport, otherTeleport, mapId), MAX_CONNECTED_DISTANCE);
+       
+                if (partner) {
+                    processedPairs.add(teleportKey);
+                    processedPairs.add(`${partner.x},${partner.y}`);
+        
+                    mapTeleports.push({
+                        x: teleport.x,
+                        y: teleport.y,
+                        destinationX: partner.x,
+                        destinationY: partner.y,
+                        color: color,
+                        biDirectional: true
+                    });
+                } else {
+                    mapTeleports.push({
+                        x: teleport.x,
+                        y: teleport.y,
+                        destinationX: teleport.destination_x,
+                        destinationY: teleport.destination_y,
+                        color: color,
+                        biDirectional: false
+                    });
+                }
             });
 
             const exitTeleportData = teleportData.filter(
@@ -339,7 +361,7 @@ const onMapChanged = (mapId: string) => {
             );
 
             exitTeleportData.forEach((teleport) => {
-                const destinationName = teleport.destination_name ? teleport.destination_name : teleport.destination_map_id;
+                const destinationName = teleport.destination_name ? teleport.destination_name : findNameForMap(mapId, playerX, playerY);
 
                 exitTeleports.push({
                     x: teleport.x,
@@ -351,6 +373,10 @@ const onMapChanged = (mapId: string) => {
         .catch(error => {
             if (Settings.values.debug) console.error(error);
         });
+};
+
+const findNameForMap = (mapId : string, playerX : number, playerY : number) : string => {
+    return getLocalizedMapLocations(Game.getGameId(), mapId, Game.getPrevMapId(), playerX, playerY)
 };
 
 const calculateWorldMousePos = (event: MouseEvent) : [number, number] => {

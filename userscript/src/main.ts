@@ -59,3 +59,5 @@ const onGameLoaded = () => {
 };
 
 setTimeout(update, 1000 / Settings.values.updatesPerSecond);
+
+setInterval(updateExtraLocationInfo, 1000 / 20);

@@ -5,7 +5,8 @@
             "y": "15",
             "destination_map_id": "0002",
             "destination_x": "9",
-            "destination_y": "5"
+            "destination_y": "5",
+            "destination_name": "Urotsuki's Room"
         }
     ],
     "loop_type": "none"

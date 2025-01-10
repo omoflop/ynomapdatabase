@@ -59,7 +59,7 @@ export const values = {
     hideMinimap : false,
     updatesPerSecond: 60,
     enableLooping: true,
-    extraLocationInfo: false,
+    extraLocationInfo: true,
     hideMinimapIfNoMap: true,
 
     // Pings

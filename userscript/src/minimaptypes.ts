@@ -1,3 +1,5 @@
+import * as Util from "./util";
+
 export enum MapLoopType {
     None = "none",
     Vertical = "vertical",
@@ -16,7 +18,8 @@ export interface MapTeleport {
     y : number,
     destinationX : number,
     destinationY : number,
-    color : string
+    color : string,
+    biDirectional : boolean
 }
 
 export interface ProtoTeleport {
@@ -28,13 +31,23 @@ export interface ProtoTeleport {
     destination_name : string | undefined
 }
 
-export const areBidirectional = (teleport1 : ProtoTeleport, teleport2 : ProtoTeleport, currentMapId: string) => {
-    return (
-        teleport1.destination_map_id === currentMapId &&
-        teleport2.destination_map_id === currentMapId &&
-        teleport1.x === teleport2.destination_x &&
-        teleport1.y === teleport2.destination_y &&
-        teleport2.x === teleport1.destination_x &&
-        teleport2.y === teleport1.destination_y
+export const areBidirectional = (teleport1 : ProtoTeleport, teleport2 : ProtoTeleport, currentMapId: string, maxDistance: number = 1) => {
+    if (teleport1.destination_map_id !== currentMapId || teleport2.destination_map_id !== currentMapId)
+        return false;
+
+    const distanceFromT1ToT2Dest = Util.dist(
+        teleport1.x,
+        teleport2.destination_x,
+        teleport1.y,
+        teleport2.destination_y
     );
+
+    const distanceFromT2ToT1Dest = Util.dist(
+        teleport2.x,
+        teleport1.destination_x,
+        teleport2.y,
+        teleport1.destination_y
+    );
+    
+    return distanceFromT1ToT2Dest <= maxDistance && distanceFromT2ToT1Dest <= maxDistance;
 };
