@@ -5,42 +5,53 @@ export enum SettingType {
     Int, Time, Bool, Text, Percentage
 }
 
-const intSetting = (name : string, onChanged : Function | undefined = undefined) => {
+export interface Setting {
+    name: string,
+    onChanged: Function | undefined,
+    type: SettingType,
+    extra: undefined | any
+}
+
+const intSetting = (name : string, onChanged : Function | undefined = undefined) : Setting => {
     return {
         name: name,
         onChanged : onChanged,
-        type: SettingType.Int
+        type: SettingType.Int,
+        extra: undefined
     }
 };
-const timeSetting = (name : string, onChanged : Function | undefined = undefined) => {
+const timeSetting = (name : string, onChanged : Function | undefined = undefined) : Setting => {
     return {
         name: name,
         onChanged : onChanged,
-        type: SettingType.Time
+        type: SettingType.Time,
+        extra: undefined
     }
 };
-const boolSetting = (name : string, onChanged : Function | undefined = undefined) => {
+const boolSetting = (name : string, onChanged : Function | undefined = undefined) : Setting => {
     return {
         name: name,
         onChanged : onChanged,
-        type: SettingType.Bool
+        type: SettingType.Bool,
+        extra: undefined
     }
 };
-const textSetting = (name : string, onChanged : Function | undefined = undefined, regex : RegExp | undefined = undefined) => {
+const textSetting = (name : string, onChanged : Function | undefined = undefined, regex : RegExp | undefined = undefined) : Setting => {
     return {
         name: name,
         onChanged : onChanged,
         type: SettingType.Text,
-        regex: regex
+        extra: regex
     }
 };
-const percentSetting = (name : string, onChanged : Function | undefined = undefined) => {
+const percentSetting = (name : string, onChanged : Function | undefined = undefined) : Setting => {
     return {
         name : name,
         onChanged : onChanged,
-        type: SettingType.Percentage
+        type: SettingType.Percentage,
+        extra: undefined
     }
-}
+};
 
 // Also works as default values when unset by the user
 export const values = {
@@ -121,7 +132,7 @@ export const menuMetadata = {
         debug: "Enables/disables debug information",
         assetServerAddress: "The address of the server used to fetch map images and data",
     }
-}
+};
 
 export const saveCookies = () => {
     document.cookie = `minimapSettings=${encodeURIComponent(JSON.stringify(values))};path=/;max-age=31536000`;

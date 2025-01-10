@@ -7,7 +7,7 @@ const minimapButtonHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://ww
 
 // Used to toggle the visibility of the minimap, hidden in rooms where the map fails to load.
 const minimapToggleButton = PageUtil.createButton(minimapButtonHTML, PageUtil.ButtonSide.Right, "controls-fullscreen");
-minimapToggleButton.style.display = "none";
+minimapToggleButton.style.display = "";
 
 // Used to display extra information about the player's location, including map id and player position. Disabled in the settings by default
 const extraLocationInfo = document.createElement("span");
@@ -23,20 +23,39 @@ Minimap.canvas.after(extraLocationInfo);
 
 minimapToggleButton.onclick = () => {
     Settings.values.hideMinimap = !Settings.values.hideMinimap;
+    Minimap.updateVisbility();
     updateExtraLocationInfo();
-}
+};
 
 export const updateExtraLocationInfo = () => {
-    extraLocationInfo.style.display = Settings.values.extraLocationInfo && !Settings.values.hideMinimap ? "" : "none";
-} 
+    const shouldBeVisible = Settings.values.extraLocationInfo && !Settings.values.hideMinimap;
+    extraLocationInfo.style.display = shouldBeVisible ? "" : "none";
+    if (shouldBeVisible) {
+        const [px, py]: number[] = Game.getPlayerCoords();
+        extraLocationInfo.textContent = `Map Id: ${Game.getMapId()}, x: ${px}, y: ${py}`;
+    }
+    if (Settings.values.debug) console.log(`Updated extra location info: Visible: ${shouldBeVisible}, Text: ${extraLocationInfo.textContent}`);
+};
+
+let wasGameLoaded = false;
 
 const update = () => {
     if (Game.isGameLoaded()) {
+        if (!wasGameLoaded) {
+            wasGameLoaded = true;
+            onGameLoaded();
+        }
+
         Minimap.update();
         Minimap.draw();
     }
 
-    setInterval(update, 1000 / Settings.values.updatesPerSecond);
+    setTimeout(update, 1000 / Settings.values.updatesPerSecond);
 };
 
-setInterval(update, 1000 / Settings.values.updatesPerSecond);
+const onGameLoaded = () => {
+    Minimap.updateVisbility();
+    updateExtraLocationInfo();
+};
+
+setTimeout(update, 1000 / Settings.values.updatesPerSecond);

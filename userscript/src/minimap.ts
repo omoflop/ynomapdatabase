@@ -1,7 +1,7 @@
 import { LazyImage } from "./lazyimage";
 import * as Settings from "./settings";
 import * as Game from "./game";
-import { ExitTeleport, MapLoopType, MapTeleport, ProtoTeleport, areBidirectional } from "./minimaptypes";
+import { type ExitTeleport, MapLoopType, type MapTeleport, type ProtoTeleport, areBidirectional } from "./minimaptypes";
 import * as Util from "./util";
 
 // The element used for displaying the minimap, can be disabled and customized in the settings. Hidden by default until a map is loaded in-game
@@ -20,7 +20,6 @@ document.getElementById("chatbox")?.insertBefore(canvas, document.getElementById
 const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
 const textLineHeight = ctx.measureText('M').width * 1.5;
 ctx.imageSmoothingEnabled = false;
-
 
 // How far the map has been panned in both directions
 let panX: number = 0;
@@ -41,7 +40,7 @@ let panOffsetY: number = 0;
 let mouseDown: boolean = false;
 
 // The game map image displayed on the minimap 
-let mapImage: LazyImage | undefined;
+const mapImage: LazyImage = new LazyImage();
 
 // The id of the map on the previous update. Used to determine when the map switches
 let previousMapId: string = "";
@@ -62,20 +61,70 @@ const exitTeleports: Array<ExitTeleport> = [];
 // A list of teleports that lead to the same map, seperated so they get drawn differently
 const mapTeleports: Array<MapTeleport> = [];
 
+canvas.addEventListener("wheel", (event) => {
+    const rect = canvas.getBoundingClientRect()
+    const mx = event.offsetX * canvas.width / rect.width;
+    const my = event.offsetY * canvas.height / rect.height;
+
+    const worldMouseX = (mx - panX) / zoom;
+    const worldMouseY = (my - panY) / zoom;
+
+    const isZoomingIn = event.deltaY < 0;
+    zoom *= isZoomingIn ? 2 : 0.5;
+
+    panX = mx - worldMouseX * zoom;
+    panY = my - worldMouseY * zoom;
+
+    event.preventDefault();
+});
+
+canvas.addEventListener("mousedown", (event) => {
+    if (event.button == 0) {
+        mouseDown = true;
+        panOffsetX = event.clientX - panX;
+        panOffsetY = event.clientY - panY;
+        lockOnPlayer = false;
+    } else if (event.button == 1) {
+        const [worldMouseX, worldMouseY] = calculateWorldMousePos(event);
+        //addPing(getMapId(), worldMouseX, worldMouseY, Date.now() + 10000, "omoflop");
+    }
+});
+
+canvas.addEventListener("contextmenu", (event) => {
+    lockOnPlayer = true;
+    event.preventDefault();
+});
+
+document.addEventListener("mouseup", (event) => {
+    mouseDown = false;
+});
+
+document.addEventListener("mousemove", (event) => {
+    if (mouseDown) {
+        panX = event.clientX - panOffsetX;
+        panY = event.clientY - panOffsetY;
+    }
+
+    [mouseX, mouseY] = calculateWorldMousePos(event);
+});
+
 export const updateVisbility = () => {
     // Hide the minimap if it's set in the settings, or if the game isn't even loaded
-    if (Settings.values.hideMinimap || Game.isGameLoaded()) {
-        canvas.style.visibility = "none";
+    if (Settings.values.hideMinimap || !Game.isGameLoaded()) {
+        canvas.style.display = "none";
+        if (Settings.values.debug) console.log("Minimap hidden. Either Settings.values.hideMinimap is true or the game is not loaded!");
         return;
     }
 
     // Hide the minimap if the image isn't loaded AND the related setting is enabled 
-    if ((mapImage == undefined || !mapImage.imageReady) && Settings.values.hideMinimapIfNoMap) {
-        canvas.style.visibility = "none";
+    if (!(mapImage?.imageReady ?? false) && Settings.values.hideMinimapIfNoMap) {
+        canvas.style.display = "none";
+        if (Settings.values.debug) console.log("Minimap hidden. Either the image isn't ready or hideMinimapIfNoMap is true")
         return;
     }
 
-    canvas.style.visibility = "";
+    if (Settings.values.debug) console.log("Minimap visible!");
+    canvas.style.display = "";
 };
 
 const centerOnPlayer = () => {
@@ -89,14 +138,13 @@ const centerOnPlayer = () => {
 export const update = () => {
     let mapId = Game.getMapId()!;
     if (mapId && mapId != previousMapId) {
-        if (Settings.values.debug) {
-            console.log(`New map loaded: ${mapId} (prev ${previousMapId})`);
-            onMapChanged(mapId);
-        }
+        if (Settings.values.debug) console.log(`New map loaded: ${mapId} (prev ${previousMapId})`);
+
+        onMapChanged(mapId);
     }
     previousMapId = mapId;
 
-    let [playerX, playerY]: Array<number> = Game.getPlayerCoords();
+    let [playerX, playerY]: number[] = Game.getPlayerCoords();
 
     // Update player position if they're too far
     if (Util.dist(playerY * 16, displayPlayerX, playerY * 16, displayPlayerY) > 16 * 4) {
@@ -114,9 +162,7 @@ export const update = () => {
 
 export const draw = () => {
     // Skip drawing if the minimap isn't visible
-    if (canvas.style.visibility == "") return;
-
-    let [playerX, playerY]: Array<Number> = Game.getPlayerCoords();
+    if (canvas.style.display == "none") return;
 
     // Setup draw transforms
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
@@ -128,101 +174,102 @@ export const draw = () => {
         panX,  // Translate X
         panY   // Translate Y
     );
-    
+
     let xx = 0;
     let yy = 0;
-    
-    if (Settings.values.enableLooping) {
+
+    if (Settings.values.enableLooping && mapImage.imageReady) {
         if (loopType == MapLoopType.Both || loopType == MapLoopType.Horizontal) xx = 1;
         if (loopType == MapLoopType.Both || loopType == MapLoopType.Vertical) yy = 1;
     }
 
-    if (mapImage?.imageReady) {
-        for (let x = -xx; x <= xx; x++) 
+    if (mapImage.imageReady) {
+        for (let x = -xx; x <= xx; x++)
+            for (let y = -yy; y <= yy; y++) {
+                const loopX = mapImage.value.width * x;
+                const loopY = mapImage.value.height * y;
+
+                ctx.drawImage(mapImage.value, loopX, loopY);
+            }
+    }
+
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.arc(displayPlayerX + 8, displayPlayerY + 8, 8, 0, Math.PI * 2);
+    ctx.fill();
+
+    for (let x = -xx; x <= xx; x++)
         for (let y = -yy; y <= yy; y++) {
-            const loopX = canvas.width * x;
-            const loopY = canvas.height * y;
-                
-            ctx.drawImage(mapImage.value, loopX, loopY, canvas.width, canvas.height);
-        }
-    }
-    
-    for (let x = -xx; x <= xx; x++) 
-    for (let y = -yy; y <= yy; y++) {
-        const inLoop = x != 0 || y != 0;
-        const loopX = canvas.width * x;
-        const loopY = canvas.height * y;
+            if ((x == 0 && y == 0) || (Settings.values.showWarpsInLoops && mapImage.imageReady)) {
+                const loopX = mapImage.value.width * x;
+                const loopY = mapImage.value.height * y;
+                mapTeleports.forEach(warp => {
+                    const warpX = warp.x * 16 + 8 + loopX;
+                    const warpY = warp.y * 16 + 8 + loopY;
 
-        if (!inLoop || Settings.values.showWarpsInLoops) {
-            mapTeleports.forEach(warp => {
-                const warpX = warp.x*16 + 8 + loopX;
-                const warpY = warp.y*16 + 8 + loopY;
+                    ctx.fillStyle = warp.color;
+                    ctx.beginPath();
+                    ctx.arc(warpX, warpY, 8, 0, Math.PI * 2);
+                    ctx.fill();
 
-                ctx.fillStyle = warp.color;
-                ctx.beginPath();
-                ctx.arc(warpX, warpY, 8, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.strokeStyle = "white";
-                ctx.beginPath();
-                ctx.moveTo(warpX, warpY);
-                ctx.lineTo(warp.destinationX * 16 + 8 + loopX, warp.destinationY * 16 + 8 + loopY);
-                ctx.stroke();
-            });
-
-            exitTeleports.forEach(exit => {
-                const tx = exit.x * 16 + 8 + loopX;
-                const ty = exit.y * 16 + 8 + loopY;
-                
-                let textSize = 18 / zoom;
-
-                ctx.font = `bold ${Math.round(textSize)}px Arial`;
-                ctx.textAlign = 'center';
-                ctx.lineWidth = 1;
-
-                const maxDistance = 200;
-                const minScale = 0.5;
-                const minAlpha = Settings.values.farWarpVisibility;
-
-                exit.destinationNameLines.forEach((text, lineIndex) => {
-                    const y = ty + (lineIndex * textLineHeight / zoom);
-                    const distance = Util.dist(tx, mouseX, y, mouseY);
-
-                    // Calculate scale and alpha based on distance
-                    const distanceRatio = Math.min(distance / maxDistance, 1);
-                    const scale = 1 - (distanceRatio * (1 - minScale));
-                    const alpha = 1 - (distanceRatio * (1 - minAlpha));
-
-                    // Save the current context state
-                    ctx.save();
-
-                    // Apply transformations
-                    ctx.translate(tx, y);
-                    ctx.scale(scale, scale);
-                    ctx.translate(-tx, -y);
-
-                    // Draw the outline with adjusted alpha
-                    ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
-                    ctx.strokeText(text, tx, y);
-
-                    // Draw the fill with adjusted alpha
-                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-                    ctx.fillText(text, tx, y);
-
-                    // Restore the context state
-                    ctx.restore();
+                    ctx.strokeStyle = "white";
+                    ctx.beginPath();
+                    ctx.moveTo(warpX, warpY);
+                    ctx.lineTo(warp.destinationX * 16 + 8 + loopX, warp.destinationY * 16 + 8 + loopY);
+                    ctx.stroke();
                 });
-            });
+
+                exitTeleports.forEach(exit => {
+                    const tx = exit.x * 16 + 8 + loopX;
+                    const ty = exit.y * 16 + 8 + loopY;
+
+                    let textSize = 18 / zoom;
+
+                    ctx.font = `bold ${Math.round(textSize)}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.lineWidth = 1;
+
+                    const maxDistance = 200;
+                    const minScale = 0.5;
+                    const minAlpha = Settings.values.farWarpVisibility;
+
+                    exit.destinationNameLines.forEach((text, lineIndex) => {
+                        const y = ty + (lineIndex * textLineHeight / zoom);
+                        const distance = Util.dist(tx, mouseX, y, mouseY);
+
+                        // Calculate scale and alpha based on distance
+                        const distanceRatio = Math.min(distance / maxDistance, 1);
+                        const scale = 1 - (distanceRatio * (1 - minScale));
+                        const alpha = 1 - (distanceRatio * (1 - minAlpha));
+
+                        // Save the current context state
+                        ctx.save();
+
+                        // Apply transformations
+                        ctx.translate(tx, y);
+                        ctx.scale(scale, scale);
+                        ctx.translate(-tx, -y);
+
+                        // Draw the outline with adjusted alpha
+                        ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
+                        ctx.strokeText(text, tx, y);
+
+                        // Draw the fill with adjusted alpha
+                        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                        ctx.fillText(text, tx, y);
+
+                        // Restore the context state
+                        ctx.restore();
+                    });
+                });
+            }
         }
-    }
 };
 
 const onMapChanged = (mapId: string) => {
-
-    mapImage = new LazyImage(`${Settings.values.assetServerAddress}/${gameId}/${mapId}/map.png?idk-what-im-doing`);
-    mapImage.onLoad = () => {
-        updateVisbility();
-    };
+    const gameId = Game.getGameId();
+    if (Settings.values.debug) console.log("Loading new map image");
+    mapImage.loadNewImage(`${Settings.values.assetServerAddress}/${gameId}/${mapId}/map.png?idk-what-im-doing`, updateVisbility);
 
     loopType = MapLoopType.None;
     exitTeleports.length = 0;
@@ -236,7 +283,7 @@ const onMapChanged = (mapId: string) => {
         })
         .then(data => {
             loopType = (data.loop_type ?? MapLoopType.None) as MapLoopType;
-            const teleportData = (data.teleportData ?? []) as Array<ProtoTeleport>;
+            const teleportData = (data.teleport_data ?? []) as Array<ProtoTeleport>;
             const colorMap = new Map<string, string>();
 
             const mapTeleportData = teleportData.filter(
@@ -304,4 +351,13 @@ const onMapChanged = (mapId: string) => {
         .catch(error => {
             if (Settings.values.debug) console.error(error);
         });
+};
+
+const calculateWorldMousePos = (event: MouseEvent) : [number, number] => {
+    const rect = canvas.getBoundingClientRect()
+    const mx = event.offsetX * canvas.width / rect.width;
+    const my = event.offsetY * canvas.height / rect.height;
+    var worldMouseX = (mx - panX) / zoom;
+    var worldMouseY = (my - panY) / zoom;
+    return [worldMouseX, worldMouseY];
 };

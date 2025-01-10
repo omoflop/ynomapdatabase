@@ -1,16 +1,21 @@
 import * as Settings from "./settings";
 
 export class LazyImage {
-    value: HTMLImageElement;
-
+    value: any;
     imageReady : boolean = false;
-    onLoad : Function | undefined = undefined
-    constructor(url : string) {
+
+    constructor(url : string | undefined = undefined, onLoad : Function | undefined = undefined) {
+        if (url) this.loadNewImage(url, onLoad);
+    }
+
+    loadNewImage(url : string | undefined = undefined, onLoad : Function | undefined = undefined) {
+        this.imageReady = false;
         this.value = new Image();
         this.value.crossOrigin = "anonymous";
         this.value.onload = () => {
             this.imageReady = true;
-            if (this.onLoad) this.onLoad();
+            if (Settings.values.debug) console.log(`Loaded image from url: ${url}`);
+            if (onLoad) onLoad();
         };
         this.value.onerror = () => {
             if (Settings.values.debug) console.error(`Failed to load image from url: ${url}`);
