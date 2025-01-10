@@ -13,7 +13,8 @@
             "y": "4",
             "destination_map_id": "0010",
             "destination_x": "3",
-            "destination_y": "28"
+            "destination_y": "28",
+            "destination_name": "The Nexus"
         },
         {
             "x": "30",
@@ -60,21 +61,16 @@
             "y": "26",
             "destination_map_id": "0858",
             "destination_x": "18",
-            "destination_y": "17"
+            "destination_y": "17",
+            "destination_name": "Bleeding Heads Garden"
         },
         {
             "x": "185",
             "y": "75",
             "destination_map_id": "1466",
             "destination_x": "41",
-            "destination_y": "33"
-        },
-        {
-            "x": "1",
-            "y": "48",
-            "destination_map_id": "0900",
-            "destination_x": "0",
-            "destination_y": "0"
+            "destination_y": "33",
+            "destination_name": "Amorphous Maroon Space"
         },
         {
             "x": "1",
@@ -93,18 +89,28 @@
             "destination_name": "Mossy Stone Area"
         },
         {
+            "x": "184",
+            "y": "91",
+            "destination_map_id": "1995",
+            "destination_x": "152",
+            "destination_y": "23",
+            "destination_name": "Ephemeral Barrens (1/2) (npc moves left)"
+        },
+        {
+            "x": "25",
+            "y": "43",
+            "destination_map_id": "1995",
+            "destination_x": "152",
+            "destination_y": "23",
+            "destination_name": "Ephemeral Barrens (1/2) (npc moves left)"
+        },
+        {
             "x": "111",
             "y": "61",
             "destination_map_id": "2078",
             "destination_x": "24",
-            "destination_y": "20"
-        },
-        {
-            "x": "147",
-            "y": "91",
-            "destination_map_id": "0900",
-            "destination_x": "0",
-            "destination_y": "0"
+            "destination_y": "20",
+            "destination_name": "Knife World"
         },
         {
             "x": "46",
