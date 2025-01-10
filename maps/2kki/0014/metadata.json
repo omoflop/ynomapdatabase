@@ -5,7 +5,8 @@
             "y": "80",
             "destination_map_id": "0182",
             "destination_x": "14",
-            "destination_y": "12"
+            "destination_y": "12",
+            "destination_name": "Red City"
         },
         {
             "x": "16",
@@ -33,21 +34,24 @@
             "y": "9",
             "destination_map_id": "0018",
             "destination_x": "149",
-            "destination_y": "93"
+            "destination_y": "93",
+            "destination_name": "Gray Road"
         },
         {
             "x": "106",
             "y": "33",
             "destination_map_id": "0662",
             "destination_x": "10",
-            "destination_y": "113"
+            "destination_y": "113",
+            "destination_name": "Bridged Swamp Islands"
         },
         {
             "x": "68",
             "y": "47",
             "destination_map_id": "0601",
             "destination_x": "109",
-            "destination_y": "11"
+            "destination_y": "11",
+            "destination_name": "Red Rock Caves"
         },
         {
             "x": "161",
@@ -117,7 +121,8 @@
             "y": "33",
             "destination_map_id": "0578",
             "destination_x": "9",
-            "destination_y": "56"
+            "destination_y": "56",
+            "destination_name": "Eldritch Streetlight Zone"
         }
     ],
     "loop_type": "both"
