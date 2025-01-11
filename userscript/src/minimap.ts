@@ -277,7 +277,7 @@ export const draw = () => {
 const onMapChanged = (mapId: string) => {
     const gameId = Game.getGameId();
     if (Settings.values.debug) console.log("Loading new map image");
-    mapImage.loadNewImage(`${Settings.values.assetServerAddress}/${gameId}/${mapId}/map.png?idk-what-im-doing`, updateVisbility);
+    mapImage.loadNewImage(`${Settings.values.assetServerAddress}/maps/${gameId}/${mapId}/map.png?idk-what-im-doing`, updateVisbility);
 
     loopType = MapLoopType.None;
     exitTeleports.length = 0;
@@ -285,7 +285,7 @@ const onMapChanged = (mapId: string) => {
 
     // Used to get the name of a map
     const [playerX, playerY] = Game.getPlayerCoords();
-    const mapMetaUrl = `${Settings.values.assetServerAddress}/${gameId}/${mapId}/metadata.json?idk-what-im-doing`;
+    const mapMetaUrl = `${Settings.values.assetServerAddress}/maps/${gameId}/${mapId}/metadata.json?idk-what-im-doing`;
     fetch(mapMetaUrl)
         .then(response => {
             if (!response.ok) throw new Error(`Failed to load metadata from url: ${mapMetaUrl}`);

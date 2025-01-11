@@ -77,7 +77,7 @@ export const values = {
 
     // Debug
     debug: true,
-    assetServerAddress: "https://raw.githubusercontent.com/omoflop/ynomapdatabase/refs/heads/main/maps"
+    assetServerAddress: "https://raw.githubusercontent.com/omoflop/ynomapdatabase/refs/heads/main",
 };
 
 export const menuMetadata = {

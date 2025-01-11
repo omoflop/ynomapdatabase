@@ -8,3 +8,4 @@ declare const easyrpgPlayer: {
 };
 
 declare const getLocalizedMapLocations: Function
+declare const showToastMessage: Function
