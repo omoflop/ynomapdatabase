@@ -3,18 +3,30 @@
         {
             "x": "7",
             "y": "5",
+            "destination_map_id": "0900",
+            "destination_x": "0",
+            "destination_y": "0"
+        },
+        {
+            "x": "7",
+            "y": "5",
             "destination_map_id": "0005",
             "destination_x": "9",
-            "destination_y": "12",
-            "destination_name": "Urotsuki's Dream Balcony"
+            "destination_y": "12"
         },
         {
             "x": "9",
             "y": "4",
             "destination_map_id": "0003",
             "destination_x": "9",
-            "destination_y": "14",
-            "destination_name": "Urotsuki's Balcony"
+            "destination_y": "14"
+        },
+        {
+            "x": "9",
+            "y": "10",
+            "destination_map_id": "0042",
+            "destination_x": "9",
+            "destination_y": "7"
         }
     ],
     "loop_type": "none"
