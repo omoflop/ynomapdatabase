@@ -29,5 +29,5 @@
             "destination_y": "26"
         }
     ],
-    "loop_type": "vertical"
+    "loop_type": "horizontal"
 }

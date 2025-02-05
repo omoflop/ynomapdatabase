@@ -57,6 +57,13 @@
             "destination_y": "24"
         },
         {
+            "x": "16",
+            "y": "89",
+            "destination_map_id": "2295",
+            "destination_x": "39",
+            "destination_y": "8"
+        },
+        {
             "x": "2",
             "y": "77",
             "destination_map_id": "2299",
@@ -66,13 +73,6 @@
         {
             "x": "15",
             "y": "88",
-            "destination_map_id": "2295",
-            "destination_x": "39",
-            "destination_y": "8"
-        },
-        {
-            "x": "16",
-            "y": "89",
             "destination_map_id": "2295",
             "destination_x": "39",
             "destination_y": "8"

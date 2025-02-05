@@ -29,6 +29,13 @@
             "destination_y": "1"
         },
         {
+            "x": "91",
+            "y": "109",
+            "destination_map_id": "2567",
+            "destination_x": "284",
+            "destination_y": "398"
+        },
+        {
             "x": "21",
             "y": "120",
             "destination_map_id": "2012",

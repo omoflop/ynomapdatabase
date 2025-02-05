@@ -713,6 +713,20 @@
             "destination_map_id": "3199",
             "destination_x": "37",
             "destination_y": "101"
+        },
+        {
+            "x": "148",
+            "y": "107",
+            "destination_map_id": "3502",
+            "destination_x": "27",
+            "destination_y": "21"
+        },
+        {
+            "x": "22",
+            "y": "105",
+            "destination_map_id": "3507",
+            "destination_x": "79",
+            "destination_y": "17"
         }
     ],
     "loop_type": "none"

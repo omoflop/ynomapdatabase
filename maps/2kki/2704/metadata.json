@@ -36,6 +36,13 @@
             "destination_y": "10"
         },
         {
+            "x": "15",
+            "y": "11",
+            "destination_map_id": "2711",
+            "destination_x": "21",
+            "destination_y": "22"
+        },
+        {
             "x": "9",
             "y": "11",
             "destination_map_id": "2709",
@@ -87,9 +94,9 @@
         {
             "x": "3",
             "y": "27",
-            "destination_map_id": "2774",
-            "destination_x": "48",
-            "destination_y": "80"
+            "destination_map_id": "2775",
+            "destination_x": "93",
+            "destination_y": "90"
         }
     ],
     "loop_type": "both"

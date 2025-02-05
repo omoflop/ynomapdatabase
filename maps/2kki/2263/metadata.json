@@ -62,6 +62,13 @@
             "destination_map_id": "2294",
             "destination_x": "62",
             "destination_y": "11"
+        },
+        {
+            "x": "41",
+            "y": "7",
+            "destination_map_id": "2563",
+            "destination_x": "11",
+            "destination_y": "198"
         }
     ],
     "loop_type": "horizontal"

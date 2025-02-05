@@ -120,5 +120,5 @@
             "destination_y": "1"
         }
     ],
-    "loop_type": "vertical"
+    "loop_type": "horizontal"
 }

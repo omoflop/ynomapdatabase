@@ -15,6 +15,13 @@
             "destination_y": "22"
         },
         {
+            "x": "87",
+            "y": "23",
+            "destination_map_id": "2711",
+            "destination_x": "21",
+            "destination_y": "22"
+        },
+        {
             "x": "100",
             "y": "40",
             "destination_map_id": "2880",
